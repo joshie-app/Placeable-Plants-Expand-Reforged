@@ -1,5 +1,6 @@
 package it.bisumto.placeable.mixin;
 
+import it.bisumto.placeable.Placeable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -22,6 +23,10 @@ public class CocoaBlockMixin {
     // PLACEABLE
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
     public void canPlantAnywhere(BlockState state, LevelReader world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+        if (Placeable.shouldSkipExpandedPlacement(world)) {
+            return;
+        }
+
         BlockState blockState = world.getBlockState(pos.relative(state.getValue(FACING)));
         if (blockState.isFaceSturdy(world, pos, state.getValue(FACING), SupportType.RIGID))
             cir.setReturnValue(true);

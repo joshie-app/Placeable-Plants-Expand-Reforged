@@ -21,7 +21,7 @@ public class BambooSaplingBlockMixin {
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     public void randomTickMixin(BlockState state, ServerLevel world, BlockPos pos, RandomSource random, CallbackInfo ci) {
         BlockState floor = world.getBlockState(pos.below());
-        if (!floor.is(BlockTags.BAMBOO_PLANTABLE_ON))
+        if (!floor.is(BlockTags.SUPPORTS_BAMBOO))
             ci.cancel();
     }
 
