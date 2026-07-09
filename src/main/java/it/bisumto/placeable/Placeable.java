@@ -1,6 +1,7 @@
 package it.bisumto.placeable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -37,10 +38,23 @@ public class Placeable {
     }
 
     public static boolean isValidFloor(BlockState floor, BlockGetter world, BlockPos pos) {
-        if (PlaceableConfig.isBlacklistedFloor(floor)) {
+        boolean worldgen = isWorldgenCheck(world);
+        if (PlaceableConfig.shouldSkipExpandedWorldgenPlacement(worldgen)) {
+            return false;
+        }
+
+        if (PlaceableConfig.isBlacklistedFloor(floor, worldgen)) {
             return false;
         }
 
         return Block.canSupportRigidBlock(world, pos) || floor.is(BlockTags.LEAVES) || floor.is(Blocks.DIRT_PATH);
+    }
+
+    public static boolean shouldSkipExpandedPlacement(BlockGetter world) {
+        return PlaceableConfig.shouldSkipExpandedWorldgenPlacement(isWorldgenCheck(world));
+    }
+
+    private static boolean isWorldgenCheck(BlockGetter world) {
+        return world instanceof WorldGenRegion;
     }
 }

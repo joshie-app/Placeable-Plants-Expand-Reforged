@@ -1,6 +1,7 @@
 package it.bisumto.placeable.mixin;
 
 import it.bisumto.placeable.Placeable;
+import it.bisumto.placeable.PlaceableConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BushBlock;
@@ -24,7 +25,9 @@ public class PlantBlockMixin {
         // BushBlock is the common parent for many plants, including CropBlock and SaplingBlock.
         Object self = this;
         if (self instanceof CropBlock || self instanceof NetherWartBlock || self instanceof SweetBerryBushBlock || self instanceof SaplingBlock) {
-            return;
+            if (!PlaceableConfig.isAdditionalPlaceablePlant(state)) {
+                return;
+            }
         }
         if (Placeable.isValidFloor(world, pos))
             cir.setReturnValue(true);

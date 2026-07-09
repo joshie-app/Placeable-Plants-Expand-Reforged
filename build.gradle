@@ -18,7 +18,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 group = 'it.bisumto'
 // Bump version to indicate the 1.20.1 Forge port + crop-placement fix
-version = '1.0.5'
+version = '1.0.7'
 
 java {
     archivesBaseName = 'placeable_plants_expanded'
