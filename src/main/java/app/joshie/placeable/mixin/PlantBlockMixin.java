@@ -1,7 +1,7 @@
-package it.bisumto.placeable.mixin;
+package app.joshie.placeable.mixin;
 
-import it.bisumto.placeable.Placeable;
-import it.bisumto.placeable.PlaceableConfig;
+import app.joshie.placeable.Placeable;
+import app.joshie.placeable.PlaceableConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BushBlock;

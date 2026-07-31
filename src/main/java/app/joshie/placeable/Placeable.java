@@ -1,4 +1,4 @@
-package it.bisumto.placeable;
+package app.joshie.placeable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.WorldGenRegion;
@@ -43,7 +43,7 @@ public class Placeable {
             return false;
         }
 
-        if (PlaceableConfig.isBlacklistedFloor(floor, worldgen)) {
+        if (PlaceableConfig.isDisallowedFloor(floor, worldgen)) {
             return false;
         }
 

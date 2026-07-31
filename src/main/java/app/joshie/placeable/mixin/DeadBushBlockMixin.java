@@ -1,6 +1,6 @@
-package it.bisumto.placeable.mixin;
+package app.joshie.placeable.mixin;
 
-import it.bisumto.placeable.Placeable;
+import app.joshie.placeable.Placeable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.DeadBushBlock;
